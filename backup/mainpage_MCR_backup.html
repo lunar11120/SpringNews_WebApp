@@ -1,0 +1,129 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="springnews.model.LoginBean"%>
+<%@page import="springnews.model.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% String username = (String)session.getAttribute("username");%>
+<% LoginBean login = (LoginBean)session.getAttribute("login");%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <% ArrayList<News> mainnews = (ArrayList)request.getAttribute("mainnews"); %>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%
+            
+        %>
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello World!ระบบติดตามข่าว Spring News</h1><br>
+        <h4>Welcome,<%= login.getUsername() %></h4><br>
+        <h4>Welcome,<%= username %></h4>
+        
+        <table border="1">
+            <tr>
+                <td>NEWSID</td>
+                <td>หัวข้อข่าว</td>
+                <td>ประเภทข่าว</td>
+                <td>ผู้สื่อข่าว</td>
+                <td>สถานะของข่าว</td>
+                <td>ปรับเปลี่ยนสถานะข่าว</td> 
+            </tr> 
+              <%
+            for (int i = 0; i < mainnews.size() ; i++){
+            %>
+            <tr><form action="editnews" method="POST">
+                <td><input  name="newsid" value="<%= mainnews.get(i).getNewsid() %>" size="3"/></td>
+                <td><% out.print(mainnews.get(i).getTitle()); %></td>
+                <td><% out.print(News.changeTYPE_News(mainnews.get(i).getTypenumber())); %></td>
+                <td> <input  name="reporterid" value="<%= mainnews.get(i).getReporterid() %>" size="3" /></td>
+                <td><% out.print(mainnews.get(i).getReportername()); %></td>
+                
+            
+              <td bgcolor="#FFFFCC">
+                  
+                   
+              <select name="status" id="status">
+              <option selected="selected" disabled="disabled"><% out.print(News.changeStatusNews(mainnews.get(i).getStatus())); %></option>        
+              <option value="1">ส่งห้องตัดต่อ</option>
+              <option value="2">Rerun</option>
+              <option value="3">กำลังตัดต่อ</option>
+              <option value="4">ตัดต่อเรียบร้อย</option>
+              <option value="5">On Air</option>
+              </select></td><td>
+                  <input type="submit" value="Update Status" />
+                  
+                  
+                 
+                  
+            </td>  
+            </form>   
+           
+            </tr>
+            <% } %> 
+           
+            
+        </table>   
+        <% out.print(mainnews.get(3).getTitle());%>
+        ----------------------------------------------------<br>
+        
+        
+        <p><br>
+        ----------------------------------------------------</p>
+        <table width="715" border="1" cellspacing="0" cellpadding="0">
+          <tr>
+            <td colspan="6" bgcolor="#FFCCCC">ตารางแม่มไม่สวย ลองทดสอบหน่อยซิ</td>
+          </tr>
+          <tr>
+            <td width="35" bgcolor="#FFCCCC">No.</td>
+            <td width="210" bgcolor="#FFCCCC">หัวข้อข่าว</td>
+            <td width="151" bgcolor="#FFCCCC">ประเภท</td>
+            <td width="151" bgcolor="#FFCCCC">ผู้สื่อข่าว</td>
+            <td width="40" bgcolor="#FFCCCC">&nbsp;</td>
+            <td width="114" bgcolor="#FFCCCC">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>ผลคดีคนหาย</td>
+            <td>ข่าวอาชญากรรม</td>
+            <td>พิชาญพงษ์ วงศ์ศรีแก้ว</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCCCCC">2</td>
+            <td bgcolor="#CCCCCC">เบาะแสใหม่ชองขวนการค้ายา</td>
+            <td bgcolor="#CCCCCC">ข่าวอาชญากรรม</td>
+            <td bgcolor="#CCCCCC">พิชาญพงษ์ วงศ์ศรีแก้ว</td>
+            <td bgcolor="#CCCCCC">&nbsp;</td>
+            <td bgcolor="#CCCCCC">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>จับแรงงานเถื่อน</td>
+            <td>ข่าวอาชญากรรม</td>
+            <td>พิชาญพงษ์ วงศ์ศรีแก้ว</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCCCCC">4</td>
+            <td bgcolor="#CCCCCC">&nbsp;</td>
+            <td bgcolor="#CCCCCC">&nbsp;</td>
+            <td bgcolor="#CCCCCC">&nbsp;</td>
+            <td bgcolor="#CCCCCC">&nbsp;</td>
+            <td bgcolor="#CCCCCC">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        <p><br>
+        </p>
+         <a href="addnews.jsp">Insert new Rundown</a><br>
+    </body>
+</html>

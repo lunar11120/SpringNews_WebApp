@@ -1,0 +1,27 @@
+  <%
+                  int nu01 = 0;
+            for (int i = 0; i < mainnews.size() ; i++){
+                  nu01 = i;
+            %>
+              <tr>
+                <td><% out.print(mainnews.get(i).getNewsid()); %></td>
+                <td><% out.print(mainnews.get(i).getTitle()); %></td>
+                <td><% out.print(News.changeTYPE_News(mainnews.get(i).getTypenumber())); %></td>
+                <td><% out.print(mainnews.get(i).getReportername()); %></td>
+                <td><% out.print(mainnews.get(i).getDate()); %></td>
+                <td><% out.print(mainnews.get(i).getRddate()); %></td>
+                <td><% out.print(News.changeStatusNews(mainnews.get(i).getStatus())); %></td>
+                <td>ทดสอบ2</td>
+              </tr>
+              <% for (int cx = 0; cx < commentC1.size() ; cx++) {
+                    if((nu01+1)==commentC1.get(cx).getCnewsid()){   %>
+              <tr colspan="5">
+                <td>Comment ตรงนี้นะเฟ้ยยยย</td>
+                <td><% out.print(commentC1.get(cx).getCnewsid()); %></td>
+                <td><% out.print(commentC1.get(cx).getMemberid()); %></td>
+                <td><% out.print(commentC1.get(cx).getComment1()); %></td>
+                <td>ทดสอบ commentC1</td>
+              </tr>
+              <% } %>
+              <% } %>
+              <% } %>

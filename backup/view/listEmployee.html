@@ -1,0 +1,47 @@
+<%-- 
+    Document   : listEmployee
+    Created on : 27-Apr-2017, 18:59:51
+    Author     : amdb2
+--%>
+
+<%@page import="springnews.model.Employee"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Check Employee</title>
+    </head>
+    <body>
+        <% ArrayList<Employee> maintest = (ArrayList)request.getAttribute("maintest"); %>
+       
+        <h1>Hello World!LIST EMPLOYEE</h1>
+        <br>
+        <table border="1">
+            <tr>
+                <td>column001</td>
+                <td>column002</td>
+                <td>column003</td>
+                <td>column004</td>  
+            </tr> 
+            <%
+            for (int i = 0; i < maintest.size() ; i++){
+            %>
+            <tr>
+                <td><% out.print(maintest.get(i).getId()); %></td>
+                <td><% out.print(maintest.get(i).getFirstname()); %></td>
+                <td><% out.print(maintest.get(i).getLastname()); %></td>
+                <td><% out.print(maintest.get(i).getEmail()); %></td>
+            </tr>
+            <% } %>
+            
+        </table>    
+        
+        
+                   
+   
+        
+            
+    </body>
+</html>
